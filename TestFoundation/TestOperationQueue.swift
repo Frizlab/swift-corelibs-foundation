@@ -14,6 +14,7 @@ class TestOperationQueue : XCTestCase {
         return [
             ("test_OperationPriorities", test_OperationPriorities),
             ("test_OperationCount", test_OperationCount),
+            ("test_OperationDependencies", test_OperationDependencies),
             ("test_AsyncOperation", test_AsyncOperation),
             ("test_isExecutingWorks", test_isExecutingWorks),
             ("test_MainQueueGetter", test_MainQueueGetter),
@@ -75,7 +76,18 @@ class TestOperationQueue : XCTestCase {
         XCTAssertEqual(msgOperations[2], "Operation2 executed")
         XCTAssertEqual(msgOperations[3], "Operation4 executed")
     }
-
+    
+    func test_OperationDependencies() {
+        var results = [Int]()
+        let queue = OperationQueue()
+        let op1 = BlockOperation(block: {                                     results.append(1) })
+        let op2 = BlockOperation(block: { Thread.sleep(forTimeInterval: 0.5); results.append(2) })
+        op1.addDependency(op2)
+        queue.addOperations([op1, op2], waitUntilFinished: true)
+        queue.waitUntilAllOperationsAreFinished()
+        XCTAssertEqual([2, 1], results)
+    }
+    
     func test_isExecutingWorks() {
         class _OperationBox {
             var operation: Operation?
