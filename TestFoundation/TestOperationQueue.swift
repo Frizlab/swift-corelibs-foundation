@@ -27,7 +27,6 @@ class TestOperationQueue : XCTestCase {
             ("test_CurrentQueueWithCustomUnderlyingQueue", test_CurrentQueueWithCustomUnderlyingQueue),
             ("test_CurrentQueueWithUnderlyingQueueResetToNil", test_CurrentQueueWithUnderlyingQueueResetToNil),
             ("test_isSuspended", test_isSuspended),
-            ("test_OperationDependencyCount", test_OperationDependencyCount),
             ("test_QueueDoesntEatAllThreadsInPool", test_QueueDoesntEatAllThreadsInPool),
             ("test_isSuspendedAndCanceled", test_isSuspendedAndCanceled),
             ("test_WaitUntilFinished", test_WaitUntilFinished),
