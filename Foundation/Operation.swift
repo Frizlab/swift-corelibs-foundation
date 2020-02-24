@@ -9,7 +9,7 @@
 
 import CoreFoundation
 
-#if DEPLOYMENT_ENABLE_LIBDISPATCH
+#if DEPLOYMENT_ENABLE_LIBDISPATCH || true
 import Dispatch
 
 open class Operation : NSObject {
